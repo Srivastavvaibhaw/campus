@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>College Addition Portal</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="add.css">
+
+</head>
+
+<body>
+     <!-- Top Bar -->
+ <div class="citrus-topbar">
+    <div class="citrus-topbar-content">
+        <div class="citrus-contact-info">
+            <a href="tel:1800ORANGE" class="citrus-contact-item">
+                <i class="fas fa-phone"></i>
+                <span>+91 92949 81607</span>
+            </a>
+            <a href="mailto:hello@orange.com" class="citrus-contact-item">
+                <i class="fas fa-envelope"></i>
+                <span>campusscale.com</span>
+            </a>
+            <div class="citrus-contact-item">
+                <i class="fas fa-clock"></i>
+                <span>Mon - Fri: 9:00 AM - 6:00 PM</span>
+            </div>
+        </div>
+        
+        <div class="citrus-social-links">
+            <a href="#" class="citrus-social-link">
+                <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="#" class="citrus-social-link">
+                <i class="fab fa-twitter"></i>
+            </a>
+            <a href="#" class="citrus-social-link">
+                <i class="fab fa-instagram"></i>
+            </a>
+            <a href="#" class="citrus-social-link">
+                <i class="fab fa-linkedin-in"></i>
+            </a>
+        </div>
+    </div>
+</div>
+
+<!-- Main Navigation -->
+<nav class="citrus-nav">
+    <div class="citrus-nav-container">
+        <a href="#" class="citrus-logo">
+            <img src="images/logo new.svg" alt="Logo">
+        </a>
+
+        <div class="citrus-menu">
+            <!-- Courses Dropdown -->
+            <div class="citrus-dropdown">
+                <a href="#" class="citrus-link">
+                    Courses <i class="fas fa-chevron-down"></i>
+                </a>
+                <div class="citrus-dropdown-menu">
+                    <a href="#" class="citrus-dropdown-item">
+                        <i class="fas fa-laptop-code"></i>
+                        Engineering
+                    </a>
+                    <a href="#" class="citrus-dropdown-item">
+                        <i class="fas fa-chart-line"></i>
+                        Management
+                    </a>
+                    <a href="#" class="citrus-dropdown-item">
+                        <i class="fas fa-palette"></i>
+                        Arts
+                    </a>
+                    <a href="#" class="citrus-dropdown-item">
+                        <i class="fas fa-stethoscope"></i>
+                        Medical
+                    </a>
+                </div>
+            </div>
+
+            <!-- Need Counseling Dropdown -->
+            <div class="citrus-dropdown">
+                <a href="#" class="citrus-link">
+                    Need Counseling <i class="fas fa-chevron-down"></i>
+                </a>
+                <div class="citrus-dropdown-menu">
+                    <a href="#" class="citrus-dropdown-item">
+                        <i class="fas fa-user-graduate"></i>
+                        Career Guidance
+                    </a>
+                    <a href="#" class="citrus-dropdown-item">
+                        <i class="fas fa-school"></i>
+                        Admission Assistance
+                    </a>
+                    <a href="#" class="citrus-dropdown-item">
+                        <i class="fas fa-graduation-cap"></i>
+                        Scholarship Counseling
+                    </a>
+                   
+                </div>
+            </div>
+
+            <!-- Latest Events Dropdown -->
+            <div class="citrus-dropdown">
+                <a href="#" class="citrus-link">
+                    Latest Events <i class="fas fa-chevron-down"></i>
+                </a>
+                <div class="citrus-dropdown-menu">
+                    <div class="event">
+                        <i class="fas fa-calendar-check"></i>
+                        <span>
+                            <strong>National Coding Marathon</strong>
+                            <small>Dec 15, 2024 | Online</small>
+                        </span>
+                    </div>
+                    <div class="event">
+                        <i class="fas fa-user-graduate"></i>
+                        <span>
+                            <strong>Scholarship Seminar</strong>
+                            <small>Dec 20, 2024 | Delhi Campus</small>
+                        </span>
+                    </div>
+                    <div class="event">
+                        <i class="fas fa-briefcase"></i>
+                        <span>
+                            <strong>Job Fair 2024</strong>
+                            <small>Jan 10, 2025 | Bangalore Campus</small>
+                        </span>
+                    </div>
+                    <a href="#" class="citrus-dropdown-item">
+                        <i class="fas fa-arrow-right"></i>
+                        View All Events
+                    </a>
+                </div>
+            </div>
+
+            <!-- Contact Us Dropdown -->
+            <div class="citrus-dropdown">
+                <a href="#" class="citrus-link">
+                    Contact Us <i class="fas fa-chevron-down"></i>
+                </a>
+                <div class="citrus-dropdown-menu">
+                    <div class="contact-group">
+                        <h4><i class="fas fa-phone-alt"></i> Call Us</h4>
+                        <div class="contact-item">
+                            <span>Support:</span>
+                            <a href="tel:+911234567890">+91 123 456 7890</a>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-group">
+                        <h4><i class="fas fa-envelope"></i> Email Us</h4>
+                        <div class="contact-item">
+                            <span>Admissions:</span>
+                            <a href="mailto:admissions@example.com">admissions@example.com</a>
+                        </div>
+                        <div class="contact-item">
+                            <span>Support:</span>
+                            <a href="mailto:support@example.com">support@example.com</a>
+                        </div>
+                    </div>
+
+                    <div class="contact-group">
+                        <h4><i class="fab fa-whatsapp"></i> WhatsApp</h4>
+                        <a href="https://wa.me/911234567890" class="whatsapp-btn">
+                            <i class="fab fa-whatsapp"></i> Chat with us on WhatsApp
+                        </a>
+                    </div>
+
+                    <div class="mobile-social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <button class="citrus-signin">Sign In</button>
+        </div>
+
+        <div class="citrus-mobile-toggle">
+            <i class="fas fa-bars"></i>
+        </div>
+    </div>
+</nav>
+        
+    <!-- Header -->
+    <div class="header">
+        <div class="header-bg"></div>
+        <div class="header-content">
+            <h1><i class="fas fa-university"></i> College Registration Portal</h1>
+            <p>Complete the form below to register your institution in our database</p>
+        </div>
+    </div>
+
+    <!-- Main Form Container -->
+    <div class="main-container">
+        <div class="form-card">
+            <form id="collegeForm" onsubmit="handleSubmit(event)">
+                <!-- Progress Bar -->
+                <div class="progress-bar">
+                    <div class="progress-steps">
+                        <div class="progress-step active" data-step="1">
+                            <i class="fas fa-info-circle"></i>
+                            <span class="step-label">Basic Info</span>
+                        </div>
+                        <div class="progress-step" data-step="2">
+                            <i class="fas fa-building"></i>
+                            <span class="step-label">Details</span>
+                        </div>
+                        <div class="progress-step" data-step="3">
+                            <i class="fas fa-file-upload"></i>
+                            <span class="step-label">Documents</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Form Steps -->
+                <div class="form-content">
+                    <!-- Step 1: Basic Information -->
+                    <div class="form-step active" id="step1">
+                        <h2 class="step-title">Basic Information</h2>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label>College Name*</label>
+                                <input type="text" name="collegeName" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Established Year*</label>
+                                <input type="number" name="year" min="1800" max="2024" required>
+                            </div>
+                            <div class="form-group">
+                                <label>College Type*</label>
+                                <select name="type" required>
+                                    <option value="">Select Type</option>
+                                    <option value="government">Government</option>
+                                    <option value="private">Private</option>
+                                    <option value="deemed">Deemed</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>University Affiliation*</label>
+                                <input type="text" name="affiliation" required>
+                            </div>
+                            <div class="form-group full-width">
+                                <label>Available Courses</label>
+                                <div class="checkbox-group">
+                                    <label class="checkbox-label">
+                                        <input type="checkbox" name="courses[]" value="engineering">
+                                        Engineering
+                                    </label>
+                                    <label class="checkbox-label">
+                                        <input type="checkbox" name="courses[]" value="medical">
+                                        Medical
+                                    </label>
+                                    <label class="checkbox-label">
+                                        <input type="checkbox" name="courses[]" value="arts">
+                                        Arts & Science
+                                    </label>
+                                    <label class="checkbox-label">
+                                        <input type="checkbox" name="courses[]" value="management">
+                                        Management
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-nav">
+                            <button type="button" class="nav-btn next-btn" onclick="nextStep(1)">
+                                Next <i class="fas fa-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Step 2: College Details -->
+                    <div class="form-step" id="step2">
+                        <h2 class="step-title">College Details</h2>
+                        <div class="form-grid">
+                            <div class="form-group full-width">
+                                <label>Address*</label>
+                                <textarea name="address" required></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label>City*</label>
+                                <input type="text" name="city" required>
+                            </div>
+                            <div class="form-group">
+                                <label>State*</label>
+                                <input type="text" name="state" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Pin Code*</label>
+                                <input type="text" name="pincode" pattern="\d{6}" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Contact Number*</label>
+                                <input type="tel" name="phone" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Email*</label>
+                                <input type="email" name="email" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Website</label>
+                                <input type="url" name="website">
+                            </div>
+                        </div>
+                        <div class="form-nav">
+                            <button type="button" class="nav-btn prev-btn" onclick="prevStep(2)">
+                                <i class="fas fa-arrow-left"></i> Previous
+                            </button>
+                            <button type="button" class="nav-btn next-btn" onclick="nextStep(2)">
+                                Next <i class="fas fa-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Step 3: Document Upload -->
+                    <div class="form-step" id="step3">
+                        <h2 class="step-title">Document Upload</h2>
+                        <div class="upload-section">
+                            <div class="form-group">
+                                <label>College Logo*</label>
+                                <div class="dropzone" id="logoDropzone">
+                                    <div class="upload-icon">
+                                        <i class="fas fa-cloud-upload-alt"></i>
+                                    </div>
+                                    <div class="upload-text">
+                                        Drag & drop your logo here or click to browse
+                                    </div>
+                                    <div class="upload-hint">
+                                        Supported formats: PNG, JPG (Max size: 2MB)
+                                    </div>
+                                    <input type="file" name="logo" accept="image/*" required hidden>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label>College Brochure*</label>
+                                <div class="dropzone" id="brochureDropzone">
+                                    <div class="upload-icon">
+                                        <i class="fas fa-file-pdf"></i>
+                                    </div>
+                                    <div class="upload-text">
+                                        Upload your college brochure
+                                    </div>
+                                    <div class="upload-hint">
+                                        PDF format only (Max size: 10MB)
+                                    </div>
+                                    <input type="file" name="brochure" accept=".pdf" required hidden>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-nav">
+                            <button type="button" class="nav-btn prev-btn" onclick="prevStep(3)">
+                                <i class="fas fa-arrow-left"></i> Previous
+                            </button>
+                            <button type="submit" class="nav-btn submit-btn">
+                                Submit <i class="fas fa-check"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Success Modal -->
+    <div class="success-modal" id="successModal">
+        <div class="modal-content">
+            <div class="success-icon">
+                <i class="fas fa-check"></i>
+            </div>
+            <h3>Registration Successful!</h3>
+            <p>Your college has been successfully registered.</p>
+            <button class="close-modal" onclick="closeModal()">Close</button>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <!-- About Section -->
+            <div class="footer-about">
+                <h3>About Us</h3>
+                <p>
+                    Discover your perfect educational path with our verified reviews and guidance. 
+                    Helping students across India make informed decisions.
+                </p>
+            </div>
+    
+            <!-- Quick Links -->
+            <div class="footer-links">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#Courses">Courses</a></li>
+                    <li><a href="#Need Councelling">Need Councelling</a></li>
+                    <li><a href="#Events">Events</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+    
+            <!-- Contact Section -->
+            <div class="footer-contact">
+                <h3>Contact Us</h3>
+                <p><i class="fas fa-phone-alt"></i> <a href="tel:+911234567890">+91 1234567890</a></p>
+                <p><i class="fab fa-whatsapp"></i> <a href="https://wa.me/911234567890" target="_blank">Chat on WhatsApp</a></p>
+                <p><i class="fas fa-envelope"></i> <a href="mailto:support@example.com">support@example.com</a></p>
+            </div>
+    
+            <!-- Social Media -->
+            <div class="footer-social">
+                <div class="footer-advertisement">
+                    <div class="ad-inquiry" onclick="openAdModal()">
+                      <img src="https://cdn-icons-png.flaticon.com/512/1055/1055647.png" alt="Ad Icon">
+                      <span>Advertisement Inquiry</span>
+                    </div>
+                  </div>
+                <h3>Follow Us</h3>
+                <div class="social-icons">
+                    <a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>
+                    <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a href="#" target="_blank"><i class="fab fa-linkedin"></i></a>
+                </div>
+            </div>
+        </div>
+            <!-- Advertisement Modal Popup -->
+    <div id="adModal" class="modal">
+        <div class="modal-content">
+          <span class="close-btn" onclick="closeAdModal()">&times;</span>
+          <h2 style="margin-bottom: 20px; color: #333;">Advertisement Inquiry</h2>
+          <form class="ad-form">
+            <div class="form-group">
+              <label for="ad-name">Name</label>
+              <input type="text" id="ad-name" placeholder="Your Name" required>
+            </div>
+            <div class="form-group">
+              <label for="ad-email">Email</label>
+              <input type="email" id="ad-email" placeholder="Your Email" required>
+            </div>
+            <div class="form-group">
+              <label for="ad-phone">Phone</label>
+              <input type="tel" id="ad-phone" placeholder="Your Phone Number">
+            </div>
+            <div class="form-group">
+              <label for="ad-message">Message</label>
+              <textarea id="ad-message" placeholder="Tell us about your inquiry" required></textarea>
+            </div>
+            <button type="submit" class="submit-btn">Submit Inquiry</button>
+          </form>
+        </div>
+      </div>
+    
+        <div class="footer-bottom">
+            <p>&copy; 2024 Campus Connect. All Rights Reserved.</p>
+        </div>
+    </footer>
+  <script src="add.js"></script>
+
+</body>
+</html>
+
+ 

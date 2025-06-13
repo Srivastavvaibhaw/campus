@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>College Events</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="event.css">
+
+</head>
+<body>
+    <div class="event-banner">
+        <div class="banner-content">
+            <h1>Campus Events</h1>
+            <p>Discover and participate in exciting events happening across campus</p>
+            <div class="event-stats">
+                <div class="stat">
+                    <span class="stat-number">50+</span>
+                    <span class="stat-label">Upcoming Events</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">1000+</span>
+                    <span class="stat-label">Students Participating</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">20+</span>
+                    <span class="stat-label">Event Categories</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="search-filter-section">
+        <div class="search-container">
+            <input type="text" id="eventSearch" placeholder="Search events...">
+            <div class="filter-tags">
+                <button class="filter-tag active" data-filter="all">All Events</button>
+                <button class="filter-tag" data-filter="technical">Technical</button>
+                <button class="filter-tag" data-filter="cultural">Cultural</button>
+                <button class="filter-tag" data-filter="sports">Sports</button>
+                <button class="filter-tag" data-filter="workshop">Workshops</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="events-grid">
+        <!-- Event Card 1 -->
+        <div class="event-card" data-category="technical">
+            <div class="event-image">
+                <img src="a1.jpeg" alt="Tech Event">
+                <div class="event-date">
+                    <span class="date">15</span>
+                    <span class="month">MAR</span>
+                </div>
+            </div>
+            <div class="event-content">
+                <span class="event-tag">Technical</span>
+                <h3>Tech Summit 2024</h3>
+                <div class="event-details">
+                    <div class="detail-item">
+                        <i class="fas fa-clock"></i>
+                        <span>9:00 AM - 5:00 PM</span>
+                    </div>
+                    <div class="detail-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Main Auditorium</span>
+                    </div>
+                </div>
+                <div class="registration-status">
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 75%"></div>
+                    </div>
+                    <span>75% seats filled</span>
+                </div>
+                <button class="register-btn" onclick="openRegistrationModal('Tech Summit 2024')">
+                    Register Now
+                </button>
+            </div>
+        </div>
+
+        <!-- Event Card 2 -->
+        <div class="event-card" data-category="cultural">
+          <div class="event-image">
+                <img src="a2.jpg" alt="Tech Event">
+                <div class="event-date">
+                    <span class="date">15</span>
+                    <span class="month">MAR</span>
+                </div>
+            </div>
+            <div class="event-content">
+                <span class="event-tag">Technical</span>
+                <h3>Tech Summit 2024</h3>
+                <div class="event-details">
+                    <div class="detail-item">
+                        <i class="fas fa-clock"></i>
+                        <span>9:00 AM - 5:00 PM</span>
+                    </div>
+                    <div class="detail-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Main Auditorium</span>
+                    </div>
+                </div>
+                <div class="registration-status">
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 75%"></div>
+                    </div>
+                    <span>75% seats filled</span>
+                </div>
+                <button class="register-btn" onclick="openRegistrationModal('Tech Summit 2024')">
+                    Register Now
+                </button>
+            </div>
+            <!-- Similar structure as Event Card 1 -->
+        </div>
+        <div class="event-card" data-category="cultural">
+          <div class="event-image">
+                <img src="a3.jpeg" alt="Tech Event">
+                <div class="event-date">
+                    <span class="date">15</span>
+                    <span class="month">MAR</span>
+                </div>
+            </div>
+            <div class="event-content">
+                <span class="event-tag">Technical</span>
+                <h3>Tech Summit 2024</h3>
+                <div class="event-details">
+                    <div class="detail-item">
+                        <i class="fas fa-clock"></i>
+                        <span>9:00 AM - 5:00 PM</span>
+                    </div>
+                    <div class="detail-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Main Auditorium</span>
+                    </div>
+                </div>
+                <div class="registration-status">
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 75%"></div>
+                    </div>
+                    <span>75% seats filled</span>
+                </div>
+                <button class="register-btn" onclick="openRegistrationModal('Tech Summit 2024')">
+                    Register Now
+                </button>
+            </div>
+            <!-- Similar structure as Event Card 1 -->
+        </div>
+        <div class="event-card" data-category="cultural">
+          <div class="event-image">
+                <img src="a5.jpeg" alt="Tech Event">
+                <div class="event-date">
+                    <span class="date">15</span>
+                    <span class="month">MAR</span>
+                </div>
+            </div>
+            <div class="event-content">
+                <span class="event-tag">Technical</span>
+                <h3>Tech Summit 2024</h3>
+                <div class="event-details">
+                    <div class="detail-item">
+                        <i class="fas fa-clock"></i>
+                        <span>9:00 AM - 5:00 PM</span>
+                    </div>
+                    <div class="detail-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Main Auditorium</span>
+                    </div>
+                </div>
+                <div class="registration-status">
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 75%"></div>
+                    </div>
+                    <span>75% seats filled</span>
+                </div>
+                <button class="register-btn" onclick="openRegistrationModal('Tech Summit 2024')">
+                    Register Now
+                </button>
+            </div>
+            <!-- Similar structure as Event Card 1 -->
+        </div>
+        <div class="event-card" data-category="technical">
+          <div class="event-image">
+                <img src="a6.webp" alt="Tech Event">
+                <div class="event-date">
+                    <span class="date">15</span>
+                    <span class="month">MAR</span>
+                </div>
+            </div>
+            <div class="event-content">
+                <span class="event-tag">Technical</span>
+                <h3>Tech Summit 2024</h3>
+                <div class="event-details">
+                    <div class="detail-item">
+                        <i class="fas fa-clock"></i>
+                        <span>9:00 AM - 5:00 PM</span>
+                    </div>
+                    <div class="detail-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Main Auditorium</span>
+                    </div>
+                </div>
+                <div class="registration-status">
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 75%"></div>
+                    </div>
+                    <span>75% seats filled</span>
+                </div>
+                <button class="register-btn" onclick="openRegistrationModal('Tech Summit 2024')">
+                    Register Now
+                </button>
+            </div>
+            <!-- Similar structure as Event Card 1 -->
+        </div>
+        <div class="event-card" data-category="technical">
+          <div class="event-image">
+                <img src="a7.jpeg" alt="Tech Event">
+                <div class="event-date">
+                    <span class="date">15</span>
+                    <span class="month">MAR</span>
+                </div>
+            </div>
+            <div class="event-content">
+                <span class="event-tag">Technical</span>
+                <h3>Tech Summit 2024</h3>
+                <div class="event-details">
+                    <div class="detail-item">
+                        <i class="fas fa-clock"></i>
+                        <span>9:00 AM - 5:00 PM</span>
+                    </div>
+                    <div class="detail-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Main Auditorium</span>
+                    </div>
+                </div>
+                <div class="registration-status">
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 75%"></div>
+                    </div>
+                    <span>75% seats filled</span>
+                </div>
+                <button class="register-btn" onclick="openRegistrationModal('Tech Summit 2024')">
+                    Register Now
+                </button>
+            </div>
+            <!-- Similar structure as Event Card 1 -->
+        </div>
+        <div class="event-card" data-category="technical">
+          <div class="event-image">
+                <img src="a7.jpeg" alt="Tech Event">
+                <div class="event-date">
+                    <span class="date">15</span>
+                    <span class="month">MAR</span>
+                </div>
+            </div>
+            <div class="event-content">
+                <span class="event-tag">Technical</span>
+                <h3>Tech Summit 2024</h3>
+                <div class="event-details">
+                    <div class="detail-item">
+                        <i class="fas fa-clock"></i>
+                        <span>9:00 AM - 5:00 PM</span>
+                    </div>
+                    <div class="detail-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Main Auditorium</span>
+                    </div>
+                </div>
+                <div class="registration-status">
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 75%"></div>
+                    </div>
+                    <span>75% seats filled</span>
+                </div>
+                <button class="register-btn" onclick="openRegistrationModal('Tech Summit 2024')">
+                    Register Now
+                </button>
+            </div>
+            <!-- Similar structure as Event Card 1 -->
+        </div>
+        <div class="event-card" data-category="technical">
+          <div class="event-image">
+                <img src="a5.jpeg" alt="Tech Event">
+                <div class="event-date">
+                    <span class="date">15</span>
+                    <span class="month">MAR</span>
+                </div>
+            </div>
+            <div class="event-content">
+                <span class="event-tag">Technical</span>
+                <h3>Tech Summit 2024</h3>
+                <div class="event-details">
+                    <div class="detail-item">
+                        <i class="fas fa-clock"></i>
+                        <span>9:00 AM - 5:00 PM</span>
+                    </div>
+                    <div class="detail-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Main Auditorium</span>
+                    </div>
+                </div>
+                <div class="registration-status">
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 75%"></div>
+                    </div>
+                    <span>75% seats filled</span>
+                </div>
+                <button class="register-btn" onclick="openRegistrationModal('Tech Summit 2024')">
+                    Register Now
+                </button>
+            </div>
+            <!-- Similar structure as Event Card 1 -->
+        </div>
+        <div class="event-card" data-category="workshop">
+          <div class="event-image">
+                <img src="a6.webp" alt="Tech Event">
+                <div class="event-date">
+                    <span class="date">15</span>
+                    <span class="month">MAR</span>
+                </div>
+            </div>
+            <div class="event-content">
+                <span class="event-tag">Technical</span>
+                <h3>Tech Summit 2024</h3>
+                <div class="event-details">
+                    <div class="detail-item">
+                        <i class="fas fa-clock"></i>
+                        <span>9:00 AM - 5:00 PM</span>
+                    </div>
+                    <div class="detail-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Main Auditorium</span>
+                    </div>
+                </div>
+                <div class="registration-status">
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 75%"></div>
+                    </div>
+                    <span>75% seats filled</span>
+                </div>
+                <button class="register-btn" onclick="openRegistrationModal('Tech Summit 2024')">
+                    Register Now
+                </button>
+            </div>
+            <!-- Similar structure as Event Card 1 -->
+        </div>
+        <div class="event-card" data-category="workshop">
+          <div class="event-image">
+                <img src="a6.webp" alt="Tech Event">
+                <div class="event-date">
+                    <span class="date">15</span>
+                    <span class="month">MAR</span>
+                </div>
+            </div>
+            <div class="event-content">
+                <span class="event-tag">Technical</span>
+                <h3>Tech Summit 2024</h3>
+                <div class="event-details">
+                    <div class="detail-item">
+                        <i class="fas fa-clock"></i>
+                        <span>9:00 AM - 5:00 PM</span>
+                    </div>
+                    <div class="detail-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Main Auditorium</span>
+                    </div>
+                </div>
+                <div class="registration-status">
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 75%"></div>
+                    </div>
+                    <span>75% seats filled</span>
+                </div>
+                <button class="register-btn" onclick="openRegistrationModal('Tech Summit 2024')">
+                    Register Now
+                </button>
+            </div>
+            <!-- Similar structure as Event Card 1 -->
+        </div>
+        <div class="event-card" data-category="workshop">
+          <div class="event-image">
+                <img src="a5.jpeg" alt="Tech Event">
+                <div class="event-date">
+                    <span class="date">15</span>
+                    <span class="month">MAR</span>
+                </div>
+            </div>
+            <div class="event-content">
+                <span class="event-tag">Technical</span>
+                <h3>Tech Summit 2024</h3>
+                <div class="event-details">
+                    <div class="detail-item">
+                        <i class="fas fa-clock"></i>
+                        <span>9:00 AM - 5:00 PM</span>
+                    </div>
+                    <div class="detail-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Main Auditorium</span>
+                    </div>
+                </div>
+                <div class="registration-status">
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 75%"></div>
+                    </div>
+                    <span>75% seats filled</span>
+                </div>
+                <button class="register-btn" onclick="openRegistrationModal('Tech Summit 2024')">
+                    Register Now
+                </button>
+            </div>
+            <!-- Similar structure as Event Card 1 -->
+        </div>
+        <div class="event-card" data-category="workshop">
+          <div class="event-image">
+                <img src="a3.jpeg" alt="Tech Event">
+                <div class="event-date">
+                    <span class="date">15</span>
+                    <span class="month">MAR</span>
+                </div>
+            </div>
+            <div class="event-content">
+                <span class="event-tag">Technical</span>
+                <h3>Tech Summit 2024</h3>
+                <div class="event-details">
+                    <div class="detail-item">
+                        <i class="fas fa-clock"></i>
+                        <span>9:00 AM - 5:00 PM</span>
+                    </div>
+                    <div class="detail-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Main Auditorium</span>
+                    </div>
+                </div>
+                <div class="registration-status">
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 75%"></div>
+                    </div>
+                    <span>75% seats filled</span>
+                </div>
+                <button class="register-btn" onclick="openRegistrationModal('Tech Summit 2024')">
+                    Register Now
+                </button>
+            </div>
+            <!-- Similar structure as Event Card 1 -->
+        </div>
+        <div class="event-card" data-category="sports">
+          <div class="event-image">
+                <img src="a2.jpg" alt="Tech Event">
+                <div class="event-date">
+                    <span class="date">15</span>
+                    <span class="month">MAR</span>
+                </div>
+            </div>
+            <div class="event-content">
+                <span class="event-tag">Technical</span>
+                <h3>Tech Summit 2024</h3>
+                <div class="event-details">
+                    <div class="detail-item">
+                        <i class="fas fa-clock"></i>
+                        <span>9:00 AM - 5:00 PM</span>
+                    </div>
+                    <div class="detail-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Main Auditorium</span>
+                    </div>
+                </div>
+                <div class="registration-status">
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 75%"></div>
+                    </div>
+                    <span>75% seats filled</span>
+                </div>
+                <button class="register-btn" onclick="openRegistrationModal('Tech Summit 2024')">
+                    Register Now
+                </button>
+            </div>
+            <!-- Similar structure as Event Card 1 -->
+        </div>
+        <div class="event-card" data-category="sports">
+          <div class="event-image">
+                <img src="a6.webp" alt="Tech Event">
+                <div class="event-date">
+                    <span class="date">15</span>
+                    <span class="month">MAR</span>
+                </div>
+            </div>
+            <div class="event-content">
+                <span class="event-tag">Technical</span>
+                <h3>Tech Summit 2024</h3>
+                <div class="event-details">
+                    <div class="detail-item">
+                        <i class="fas fa-clock"></i>
+                        <span>9:00 AM - 5:00 PM</span>
+                    </div>
+                    <div class="detail-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Main Auditorium</span>
+                    </div>
+                </div>
+                <div class="registration-status">
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 75%"></div>
+                    </div>
+                    <span>75% seats filled</span>
+                </div>
+                <button class="register-btn" onclick="openRegistrationModal('Tech Summit 2024')">
+                    Register Now
+                </button>
+            </div>
+            <!-- Similar structure as Event Card 1 -->
+        </div>
+        <div class="event-card" data-category="sports">
+          <div class="event-image">
+                <img src="a3.jpeg" alt="Tech Event">
+                <div class="event-date">
+                    <span class="date">15</span>
+                    <span class="month">MAR</span>
+                </div>
+            </div>
+            <div class="event-content">
+                <span class="event-tag">Technical</span>
+                <h3>Tech Summit 2024</h3>
+                <div class="event-details">
+                    <div class="detail-item">
+                        <i class="fas fa-clock"></i>
+                        <span>9:00 AM - 5:00 PM</span>
+                    </div>
+                    <div class="detail-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Main Auditorium</span>
+                    </div>
+                </div>
+                <div class="registration-status">
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 75%"></div>
+                    </div>
+                    <span>75% seats filled</span>
+                </div>
+                <button class="register-btn" onclick="openRegistrationModal('Tech Summit 2024')">
+                    Register Now
+                </button>
+            </div>
+            <!-- Similar structure as Event Card 1 -->
+        </div>
+
+        <!-- Add more event cards as needed -->
+    </div>
+
+    <!-- Registration Modal -->
+    <div class="registration-modal" id="registrationModal">
+        <div class="modal-content">
+            <button class="close-modal">&times;</button>
+            <h2>Event Registration</h2>
+            <h3 id="modalEventTitle"></h3>
+            <form id="registrationForm">
+                <div class="form-group">
+                    <label>Full Name</label>
+                    <input type="text" required>
+                </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" required>
+                </div>
+                <div class="form-group">
+                    <label>Phone Number</label>
+                    <input type="tel" required>
+                </div>
+                <div class="form-group">
+                    <label>Department</label>
+                    <select required>
+                        <option value="">Select Department</option>
+                        <option value="cse">Computer Science</option>
+                        <option value="ece">Electronics</option>
+                        <option value="me">Mechanical</option>
+                    </select>
+                </div>
+                <button type="submit" class="register-btn">Submit Registration</button>
+            </form>
+        </div>
+    </div>
+
+   <script src="event.js"></script>
+</body>
+</html>

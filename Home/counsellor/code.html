@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Orange & White Theme – Counsellor Profiles</title>
+    <!-- Google Fonts & Font Awesome for icons -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <style>
+      :root {
+        --primary-color: #ff8c00; /* Bright Orange */
+        --secondary-color: #e67e00; /* Darker Orange */
+        --background-color: #fff; /* White Background for cards */
+        --page-bg: #fff5e6; /* Soft light orange for page background */
+        --text-color: #333;
+        --shadow-color: rgba(0, 0, 0, 0.1);
+        --transition-speed: 0.3s;
+      }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        font-family: "Inter", sans-serif;
+        background: var(--page-bg);
+        color: var(--text-color);
+        padding: 20px;
+      }
+      h2 {
+        text-align: center;
+        margin-bottom: 30px;
+        color: var(--primary-color);
+        font-size: 2rem;
+      }
+      /* Section Container */
+      .counsellor-section {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 40px 20px;
+        background: var(--background-color);
+        border-radius: 12px;
+        box-shadow: 0 8px 20px var(--shadow-color);
+      }
+      /* Grid Layout */
+      .counsellor-grid {
+        display: grid;
+        gap: 20px;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      }
+      /* Counsellor Card */
+      .counsellor-card {
+        background: var(--background-color);
+        border-radius: 15px;
+        overflow: hidden;
+        border: 1px solid #ffe0b3;
+        transition: transform var(--transition-speed) ease,
+          box-shadow var(--transition-speed) ease;
+        position: relative;
+      }
+      .counsellor-card:hover {
+        transform: translateY(-5px) scale(1.03);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+      }
+      .counsellor-img {
+        width: 100%;
+        height: 220px;
+        object-fit: cover;
+        position: relative;
+      }
+      .counsellor-img::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.15);
+        transition: background var(--transition-speed) ease;
+      }
+      .counsellor-card:hover .counsellor-img::before {
+        background: rgba(0, 0, 0, 0.25);
+      }
+      .counsellor-details {
+        padding: 20px;
+      }
+      .counsellor-details h3 {
+        font-size: 1.5rem;
+        margin-bottom: 8px;
+        color: var(--primary-color);
+      }
+      .counsellor-details p {
+        font-size: 0.95rem;
+        line-height: 1.6;
+        margin-bottom: 10px;
+        color: #555;
+      }
+      .counsellor-details .contact {
+        font-weight: bold;
+        color: var(--primary-color);
+        font-size: 0.95rem;
+      }
+      .social-icons {
+        margin-top: 10px;
+        display: flex;
+        gap: 10px;
+      }
+      .social-icons a {
+        color: var(--primary-color);
+        font-size: 1.2rem;
+        transition: color var(--transition-speed) ease;
+      }
+      .social-icons a:hover {
+        color: var(--secondary-color);
+      }
+      /* Callback Section */
+      .callback-btn {
+        width: calc(100% - 40px);
+        margin: 15px 20px 10px;
+        padding: 12px;
+        background: var(--primary-color);
+        border: none;
+        color: #fff;
+        font-weight: 600;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: background var(--transition-speed) ease;
+        text-align: center;
+        letter-spacing: 0.5px;
+      }
+      .callback-btn:hover {
+        background: var(--secondary-color);
+      }
+      .callback-form {
+        display: none;
+        background: #fff;
+        padding: 20px;
+        border-top: 1px solid #ffe0b3;
+        animation: slideDown 0.3s ease;
+      }
+      .callback-form.active {
+        display: block;
+      }
+      @keyframes slideDown {
+        from {
+          opacity: 0;
+          transform: translateY(-10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .callback-form input {
+        width: 100%;
+        padding: 12px;
+        margin-bottom: 15px;
+        border: 1px solid #ffd699;
+        border-radius: 8px;
+        font-size: 0.95rem;
+        transition: border-color var(--transition-speed) ease;
+      }
+      .callback-form input:focus {
+        border-color: var(--primary-color);
+        outline: none;
+        box-shadow: 0 0 0 2px rgba(255, 140, 0, 0.15);
+      }
+      .callback-form button {
+        width: 100%;
+        padding: 12px;
+        background: var(--primary-color);
+        border: none;
+        color: #fff;
+        font-weight: 600;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: background var(--transition-speed) ease;
+        position: relative;
+      }
+      .callback-form button:hover {
+        background: var(--secondary-color);
+      }
+      .callback-form button .spinner {
+        display: none;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+      }
+      .callback-form button.loading .spinner {
+        display: inline-block;
+      }
+      /* Error Styles */
+      .callback-form input.error {
+        border-color: #e44d26;
+        box-shadow: 0 0 0 2px rgba(228, 77, 38, 0.1);
+      }
+      .error-message {
+        color: #e44d26;
+        font-size: 0.8rem;
+        margin-top: -8px;
+        margin-bottom: 8px;
+        display: block;
+      }
+      /* Responsive Adjustments */
+      @media (max-width: 768px) {
+        .counsellor-grid {
+          grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        }
+        .callback-btn {
+          margin: 15px 10px 10px;
+          width: calc(100% - 20px);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <section class="counsellor-section">
+      <h2>Our Counsellors</h2>
+      <div class="counsellor-grid">
+        <!-- Counsellor Card 1 -->
+        <div class="counsellor-card">
+          <img
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRxAKxMm--GdX5n61Lv0ndN7XKLAcbd22GztA&s"
+            alt="Dr. Jane Smith"
+            class="counsellor-img"
+          />
+          <div class="counsellor-details">
+            <h3>Dr. Jane Smith</h3>
+            <p>
+              Career counselling specialist with over 10 years of experience
+              guiding students in their career journeys.
+            </p>
+            <p class="contact"
+              ><i class="fas fa-envelope"></i>
+              jane.smith@example.com</p
+            >
+            <div class="social-icons">
+              <a href="#" title="LinkedIn"
+                ><i class="fab fa-linkedin"></i
+              ></a>
+              <a href="#" title="Twitter"
+                ><i class="fab fa-twitter-square"></i
+              ></a>
+            </div>
+          </div>
+          <button class="callback-btn" onclick="toggleCallback(this)">
+            Request Callback <i class="fas fa-chevron-down"></i>
+          </button>
+          <div class="callback-form">
+            <input
+              type="text"
+              placeholder="Your Name"
+              required
+              oninput="validateField(this)"
+            />
+            <span class="error-message"></span>
+            <input
+              type="email"
+              placeholder="Your Email"
+              required
+              oninput="validateField(this)"
+            />
+            <span class="error-message"></span>
+            <input
+              type="tel"
+              placeholder="Your Phone"
+              required
+              oninput="validateField(this)"
+            />
+            <span class="error-message"></span>
+            <button onclick="submitCallback(event, 'Dr. Jane Smith')">
+              Submit Request
+              <span class="spinner"
+                ><i class="fas fa-spinner fa-spin"></i
+              ></span>
+            </button>
+          </div>
+        </div>
+        <!-- Counsellor Card 2 -->
+        <div class="counsellor-card">
+          <img
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRxAKxMm--GdX5n61Lv0ndN7XKLAcbd22GztA&s"
+            alt="Mr. Robert Johnson"
+            class="counsellor-img"
+          />
+          <div class="counsellor-details">
+            <h3>Mr. Robert Johnson</h3>
+            <p>
+              Academic counselling expert helping students choose the right
+              college and course.
+            </p>
+            <p class="contact"
+              ><i class="fas fa-envelope"></i>
+              robert.j@example.com</p
+            >
+            <div class="social-icons">
+              <a href="#" title="Facebook"
+                ><i class="fab fa-facebook-square"></i
+              ></a>
+              <a href="#" title="Instagram"
+                ><i class="fab fa-instagram"></i
+              ></a>
+            </div>
+          </div>
+          <button class="callback-btn" onclick="toggleCallback(this)">
+            Request Callback <i class="fas fa-chevron-down"></i>
+          </button>
+          <div class="callback-form">
+            <input
+              type="text"
+              placeholder="Your Name"
+              required
+              oninput="validateField(this)"
+            />
+            <span class="error-message"></span>
+            <input
+              type="email"
+              placeholder="Your Email"
+              required
+              oninput="validateField(this)"
+            />
+            <span class="error-message"></span>
+            <input
+              type="tel"
+              placeholder="Your Phone"
+              required
+              oninput="validateField(this)"
+            />
+            <span class="error-message"></span>
+            <button onclick="submitCallback(event, 'Mr. Robert Johnson')">
+              Submit Request
+              <span class="spinner"
+                ><i class="fas fa-spinner fa-spin"></i
+              ></span>
+            </button>
+          </div>
+        </div>
+          <div class="counsellor-card">
+          <img
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRxAKxMm--GdX5n61Lv0ndN7XKLAcbd22GztA&s"
+            alt="Ms. Emily Davis"
+            class="counsellor-img"
+          />
+          <div class="counsellor-details">
+            <h3>Ms. Emily Davis</h3>
+            <p>
+              Mental health counselling expert focused on stress management and
+              personal growth.
+            </p>
+            <p class="contact"
+              ><i class="fas fa-envelope"></i>
+              emily.davis@example.com</p
+            >
+            <div class="social-icons">
+              <a href="#" title="LinkedIn"
+                ><i class="fab fa-linkedin"></i
+              ></a>
+              <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
+            </div>
+          </div>
+          <button class="callback-btn" onclick="toggleCallback(this)">
+            Request Callback <i class="fas fa-chevron-down"></i>
+          </button>
+          <div class="callback-form">
+            <input
+              type="text"
+              placeholder="Your Name"
+              required
+              oninput="validateField(this)"
+            />
+            <span class="error-message"></span>
+            <input
+              type="email"
+              placeholder="Your Email"
+              required
+              oninput="validateField(this)"
+            />
+            <span class="error-message"></span>
+            <input
+              type="tel"
+              placeholder="Your Phone"
+              required
+              oninput="validateField(this)"
+            />
+            <span class="error-message"></span>
+            <button onclick="submitCallback(event, 'Ms. Emily Davis')">
+              Submit Request
+              <span class="spinner"
+                ><i class="fas fa-spinner fa-spin"></i
+              ></span>
+            </button>
+          </div>
+        </div>
+          <div class="counsellor-card">
+          <img
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRxAKxMm--GdX5n61Lv0ndN7XKLAcbd22GztA&s"
+            alt="Ms. Emily Davis"
+            class="counsellor-img"
+          />
+          <div class="counsellor-details">
+            <h3>Ms. Emily Davis</h3>
+            <p>
+              Mental health counselling expert focused on stress management and
+              personal growth.
+            </p>
+            <p class="contact"
+              ><i class="fas fa-envelope"></i>
+              emily.davis@example.com</p
+            >
+            <div class="social-icons">
+              <a href="#" title="LinkedIn"
+                ><i class="fab fa-linkedin"></i
+              ></a>
+              <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
+            </div>
+          </div>
+          <button class="callback-btn" onclick="toggleCallback(this)">
+            Request Callback <i class="fas fa-chevron-down"></i>
+          </button>
+          <div class="callback-form">
+            <input
+              type="text"
+              placeholder="Your Name"
+              required
+              oninput="validateField(this)"
+            />
+            <span class="error-message"></span>
+            <input
+              type="email"
+              placeholder="Your Email"
+              required
+              oninput="validateField(this)"
+            />
+            <span class="error-message"></span>
+            <input
+              type="tel"
+              placeholder="Your Phone"
+              required
+              oninput="validateField(this)"
+            />
+            <span class="error-message"></span>
+            <button onclick="submitCallback(event, 'Ms. Emily Davis')">
+              Submit Request
+              <span class="spinner"
+                ><i class="fas fa-spinner fa-spin"></i
+              ></span>
+            </button>
+          </div>
+        </div>
+        <!-- Counsellor Card 3 -->
+        <div class="counsellor-card">
+          <img
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRxAKxMm--GdX5n61Lv0ndN7XKLAcbd22GztA&s"
+            alt="Ms. Emily Davis"
+            class="counsellor-img"
+          />
+          <div class="counsellor-details">
+            <h3>Ms. Emily Davis</h3>
+            <p>
+              Mental health counselling expert focused on stress management and
+              personal growth.
+            </p>
+            <p class="contact"
+              ><i class="fas fa-envelope"></i>
+              emily.davis@example.com</p
+            >
+            <div class="social-icons">
+              <a href="#" title="LinkedIn"
+                ><i class="fab fa-linkedin"></i
+              ></a>
+              <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
+            </div>
+          </div>
+          <button class="callback-btn" onclick="toggleCallback(this)">
+            Request Callback <i class="fas fa-chevron-down"></i>
+          </button>
+          <div class="callback-form">
+            <input
+              type="text"
+              placeholder="Your Name"
+              required
+              oninput="validateField(this)"
+            />
+            <span class="error-message"></span>
+            <input
+              type="email"
+              placeholder="Your Email"
+              required
+              oninput="validateField(this)"
+            />
+            <span class="error-message"></span>
+            <input
+              type="tel"
+              placeholder="Your Phone"
+              required
+              oninput="validateField(this)"
+            />
+            <span class="error-message"></span>
+            <button onclick="submitCallback(event, 'Ms. Emily Davis')">
+              Submit Request
+              <span class="spinner"
+                ><i class="fas fa-spinner fa-spin"></i
+              ></span>
+            </button>
+          </div>
+        </div>
+        <!-- Counsellor Card 4 -->
+        <div class="counsellor-card">
+          <img
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRxAKxMm--GdX5n61Lv0ndN7XKLAcbd22GztA&s"
+            alt="Dr. Michael Lee"
+            class="counsellor-img"
+          />
+          <div class="counsellor-details">
+            <h3>Dr. Michael Lee</h3>
+            <p>
+              Life & business coach combining personal insights with professional
+              expertise.
+            </p>
+            <p class="contact"
+              ><i class="fas fa-envelope"></i>
+              michael.lee@example.com</p
+            >
+            <div class="social-icons">
+              <a href="#" title="LinkedIn"
+                ><i class="fab fa-linkedin"></i
+              ></a>
+              <a href="#" title="Facebook"><i class="fab fa-facebook"></i></a>
+            </div>
+          </div>
+          <button class="callback-btn" onclick="toggleCallback(this)">
+            Request Callback <i class="fas fa-chevron-down"></i>
+          </button>
+          <div class="callback-form">
+            <input
+              type="text"
+              placeholder="Your Name"
+              required
+              oninput="validateField(this)"
+            />
+            <span class="error-message"></span>
+            <input
+              type="email"
+              placeholder="Your Email"
+              required
+              oninput="validateField(this)"
+            />
+            <span class="error-message"></span>
+            <input
+              type="tel"
+              placeholder="Your Phone"
+              required
+              oninput="validateField(this)"
+            />
+            <span class="error-message"></span>
+            <button onclick="submitCallback(event, 'Dr. Michael Lee')">
+              Submit Request
+              <span class="spinner"
+                ><i class="fas fa-spinner fa-spin"></i
+              ></span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+    <script>
+  // Toggle the callback form.
+  function toggleCallback(button) {
+    const callbackForm = button.nextElementSibling;
+    if (callbackForm.classList.contains("active")) {
+      callbackForm.classList.remove("active");
+      button.innerHTML =
+        'Request Callback <i class="fas fa-chevron-down"></i>';
+    } else {
+      // Optionally collapse any other open callback forms.
+      document.querySelectorAll(".callback-form.active").forEach((form) => {
+        form.classList.remove("active");
+        form.previousElementSibling.innerHTML =
+          'Request Callback <i class="fas fa-chevron-down"></i>';
+      });
+      callbackForm.classList.add("active");
+      button.innerHTML = 'Close <i class="fas fa-chevron-up"></i>';
+    }
+  }
+
+  // Validate an input field on the fly.
+  function validateField(input) {
+    if (!input.value.trim()) {
+      input.classList.add("error");
+      input.nextElementSibling.textContent = "This field is required.";
+    } else {
+      input.classList.remove("error");
+      input.nextElementSibling.textContent = "";
+    }
+  }
+
+  // Simulate form submission.
+  function submitCallback(event, counsellorName) {
+    event.preventDefault();
+    const form = event.target.parentElement;
+    const nameInput = form.querySelector('input[placeholder="Your Name"]');
+    const emailInput = form.querySelector(
+      'input[placeholder="Your Email"]'
+    );
+    const phoneInput = form.querySelector('input[placeholder="Your Phone"]');
+    const name = nameInput.value.trim();
+    const email = emailInput.value.trim();
+    const phone = phoneInput.value.trim();
+
+    // Validate all fields.
+    validateField(nameInput);
+    validateField(emailInput);
+    validateField(phoneInput);
+
+    if (
+      name &&
+      email &&
+      phone &&
+      !nameInput.classList.contains("error") &&
+      !emailInput.classList.contains("error") &&
+      !phoneInput.classList.contains("error")
+    ) {
+      const btn = event.target;
+      btn.classList.add("loading");
+      btn.innerHTML =
+        'Submitting <span class="spinner"><i class="fas fa-spinner fa-spin"></i></span>';
+      setTimeout(() => {
+        btn.classList.remove("loading");
+        btn.innerHTML =
+          'Submit Request <span class="spinner"><i class="fas fa-spinner fa-spin"></i></span>';
+        alert(
+          `Callback request sent to ${counsellorName}!\nName: ${name}\nEmail: ${email}\nPhone: ${phone}`
+        );
+        form.reset();
+        form.classList.remove("active");
+        form.previousElementSibling.innerHTML =
+          'Request Callback <i class="fas fa-chevron-down"></i>';
+      }, 2000);
+    } else {
+      alert("Please fill in all required fields correctly.");
+    }
+  }
+</script>
