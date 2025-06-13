@@ -46,19 +46,7 @@ A comprehensive college admission platform that helps students find, compare, an
 - MongoDB
 - Mongoose ODM
 
-## 📂 Project Structure
-```
-campusscale/
-├── frontend/
-│   ├── Home/
-│   ├── explore/
-│   └── counsellor/
-├── backend/
-│   ├── controllers/
-│   ├── models/
-│   └── routes/
-└── docs/
-```
+
 
 ## 🚀 Getting Started
 
@@ -102,11 +90,9 @@ npm run client
 ```
 
 ## 💻 Usage
-
-1. Visit `http://localhost:3000`
-2. Create an account or login
-3. Explore colleges and courses
-4. Apply for admissions
+1. Create an account or login
+2. Explore colleges and courses
+3. Apply for admissions
 
 ## 🌟 Key Features
 
