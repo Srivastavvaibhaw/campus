@@ -1,0 +1,107 @@
+body {
+    background-color: #f8f9fa;
+    font-family: Arial, sans-serif;
+    text-align: center;
+}
+
+.container {
+    margin-top: 50px;
+}
+
+/* Styling for the face and its parts */
+.face {
+    width: 300px;
+    height: 300px;
+    border: 4px solid #383A41;
+    border-radius: 10px;
+    background-color: #ffffff;
+    margin: 0 auto;
+    margin-top: 40px;
+}
+
+.face .band {
+    width: 350px;
+    height: 27px;
+    border: 4px solid #383A41;
+    border-radius: 5px;
+    margin-left: -25px;
+    margin-top: 50px;
+}
+
+.face .band .red, .face .band .white, .face .band .blue {
+    height: calc(100% / 3);
+    width: 100%;
+}
+
+.face .band .red { background-color: #EB6D6D; }
+.face .band .white { background-color: #FFFFFF; }
+.face .band .blue { background-color: #5E7FDC; }
+
+.face .eyes {
+    width: 128px;
+    margin: 0 auto;
+    margin-top: 40px;
+}
+
+.face .eyes:before, .face .eyes:after {
+    content: "";
+    display: inline-block;
+    width: 30px;
+    height: 15px;
+    border: 7px solid #383A41;
+    border-top-left-radius: 22px;
+    border-top-right-radius: 22px;
+    border-bottom: 0;
+}
+
+.face .eyes:before { margin-right: 20px; }
+.face .eyes:after { margin-left: 20px; }
+
+.face .dimples {
+    width: 180px;
+    margin: 0 auto;
+    margin-top: 15px;
+}
+
+.face .dimples:before, .face .dimples:after {
+    content: "";
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: rgba(235, 109, 109, 0.4);
+}
+
+.face .dimples:before { margin-right: 80px; }
+.face .dimples:after { margin-left: 80px; }
+
+.face .mouth {
+    width: 40px;
+    height: 5px;
+    border-radius: 5px;
+    background-color: #383A41;
+    margin: 0 auto;
+    margin-top: 25px;
+}
+
+h1 {
+    font-weight: 800;
+    color: #383A41;
+    font-size: 2.5em;
+    padding-top: 20px;
+}
+
+.btn {
+    background-color: #007bff;
+    color: white;
+    font-size: 1rem;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 30px;
+    text-decoration: none;
+}
+
+.btn:hover {
+    background-color: #0056b3;
+}

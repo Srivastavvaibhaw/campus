@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <style>
+        body {
+            display: flex;
+            background-color: #f8f9fa;
+        }
+        #sidebar {
+            width: 250px;
+            height: 100vh;
+            background: #343a40;
+            color: white;
+            padding: 20px;
+            position: fixed;
+            left: 0;
+            top: 0;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+        }
+        #sidebar a {
+            color: white;
+            display: block;
+            padding: 10px 15px;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-bottom: 5px;
+            transition: all 0.3s ease;
+        }
+        #sidebar a:hover {
+            background: #007bff;
+            transform: translateX(5px);
+        }
+        #content {
+            margin-left: 260px;
+            padding: 20px;
+            width: 100%;
+        }
+        .hidden {
+            display: none;
+        }
+        .card {
+            border: none;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        .btn-sm {
+            margin-right: 5px;
+        }
+        .section-title {
+            color: #343a40;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+        .form-label {
+            font-weight: 500;
+        }
+        .add-course {
+            margin-top: 10px;
+        }
+        .remove-course {
+            margin-top: 10px;
+        }
+        .search-bar {
+            margin-bottom: 20px;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div id="sidebar">
+        <h2 class="text-center mb-4">Admin Panel</h2>
+        <a href="#" id="dashboard-btn"><i class="fas fa-tachometer-alt me-2"></i>Dashboard</a>
+        <a href="#" id="all-colleges-btn"><i class="fas fa-university me-2"></i>All Colleges</a>
+        <a href="#" id="add-college-btn"><i class="fas fa-plus-circle me-2"></i>Add New College</a>
+    </div>
+
+    <div id="content">
+        <!-- Dashboard Section -->
+        <div id="dashboard" class="content-section">
+            <h2 class="section-title">Dashboard Summary</h2>
+            <div class="row mb-4">
+                <div class="col-md-4">
+                    <div class="card bg-primary text-white">
+                        <div class="card-body">
+                            <h5 class="card-title"><i class="fas fa-users me-2"></i>Total Users</h5>
+                            <p class="card-text"><%= userCount %></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card bg-success text-white">
+                        <div class="card-body">
+                            <h5 class="card-title"><i class="fas fa-university me-2"></i>Total Colleges</h5>
+                            <p class="card-text"><%= collegeCount %></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card bg-info text-white">
+                        <div class="card-body">
+                            <h5 class="card-title"><i class="fas fa-book me-2"></i>Total Courses</h5>
+                            <p class="card-text"><%= totalCourses %></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recent Colleges Section -->
+            <section class="recent-colleges mt-5">
+                <h2 class="section-title">Recent Colleges</h2>
+                <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+                    <% if (recentColleges.length > 0) { %>
+                        <% recentColleges.forEach(college => { %>
+                            <div class="col">
+                                <div class="card h-100">
+                                    <% if (college.image && college.image.url) { %>
+                                    <img src="<%= college.image.url || "https://picsum.photos/200/300?random=1" %>" class="card-img-top" alt="<%= college.name %>">
+                                    <% } else { %>
+                                        <p>No image available</p>
+                                    <% } %>
+                                    <div class="card-body">
+                                        <h5 class="card-title"><%= college.name %></h5>
+                                        <p class="card-text"><strong>Country:</strong> <%= college.country %></p>
+                                        <p class="card-text"><strong>Location:</strong> <%= college.location.city %>, <%= college.location.state %></p>
+                                        <p class="card-text"><strong>About:</strong> <%= college.about || "No description available" %></p>
+                                    </div>
+                                    <div class="card-footer">
+                                        <a href="/admin/college/<%= college._id %>/update" class="btn btn-warning btn-sm">Edit</a>
+                                        <button class="btn btn-danger btn-sm delete-btn" data-college-id="<%= college._id %>">Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                        <% }); %>
+                    <% } else { %>
+                        <p>No recent colleges added yet.</p>
+                    <% } %>
+                </div>
+            </section>
+        </div>
+
+        <!-- All Colleges Section -->
+        <div id="all-colleges" class="content-section hidden">
+            <h2 class="section-title">All Colleges</h2>
+            <div class="search-bar">
+                <input type="text" id="search-college" class="form-control" placeholder="Search colleges...">
+            </div>
+            <div id="colleges-container" class="row"></div>
+        </div>
+
+        <!-- Add New College Section -->
+        <div id="add-new-college" class="content-section hidden">
+            <h2 class="section-title mb-4">Create New College</h2>
+            <div class="card p-4">
+                <form action="/admin/addnewcollege" method="POST" enctype="multipart/form-data">
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="name" class="form-label">College Name</label>
+                            <input type="text" class="form-control" id="name" name="college[name]" required>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="type" class="form-label">Type</label>
+                            <input type="text" class="form-control" id="type" name="college[type]" required>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="category" class="form-label">Category</label>
+                            <input type="text" class="form-control" id="category" name="college[category]">
+                        </div>
+                        <!--adding images-->
+                        <div class="col-md-6 mb-3">
+                            <label for="image" class="form-label">College Image</label>
+                            <input type="file" class="form-control" id="image" name="college[image]" accept="image/*">
+                        </div>
+                        <!--add brochure-->
+                        <div class="col-md-6 mb-3">
+                            <label for="brochure" class="form-label">College brochure</label>
+                            <input type="file" class="form-control" id="brochure" name="college[brochure]" accept="application/pdf">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="estyear" class="form-label">Established Year</label>
+                            <input type="number" class="form-control" id="estyear" name="college[estyear]">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="country" class="form-label">Country</label>
+                            <input type="text" class="form-control" id="country" name="college[country]" required>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="state" class="form-label">State</label>
+                            <input type="text" class="form-control" id="state" name="college[location][state]" required>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="city" class="form-label">City</label>
+                            <input type="text" class="form-control" id="city" name="college[location][city]" required>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="address" class="form-label">Address</label>
+                            <input type="text" class="form-control" id="address" name="college[location][address]">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="code" class="form-label">Postal Code</label>
+                            <input type="number" class="form-control" id="code" name="college[location][code]">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="latitude" class="form-label">Latitude</label>
+                            <input type="number" step="any" class="form-control" id="latitude" name="college[coordinates][latitude]">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="longitude" class="form-label">Longitude</label>
+                            <input type="number" step="any" class="form-control" id="longitude" name="college[coordinates][longitude]">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="collegewebsite" class="form-label">College Website</label>
+                            <input type="text" class="form-control" id="collegewebsite" name="college[collegewebsite]">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="email" name="college[contact][email]">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="phone" class="form-label">Phone</label>
+                            <input type="tel" class="form-control" id="phone" name="college[contact][phone]">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="fee" class="form-label">Fee</label>
+                            <input type="number" class="form-control" id="fee" name="college[fee]">
+                        </div>
+                        <div class="col-md-12 mb-3">
+                            <label for="about" class="form-label">About</label>
+                            <textarea class="form-control" id="about" name="college[about]" rows="3"></textarea>
+                        </div>
+
+                        <div class="col-md-12 mb-3">
+                            <h3>Courses</h3>
+                            <div id="courses">
+                                <div class="course border p-3 mb-3">
+                                    <div class="row">
+                                        <div class="col-md-6 mb-3">
+                                            <label for="coursename" class="form-label">Course Name</label>
+                                            <input type="text" class="form-control" name="college[courses][0][coursename]" required>
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <label for="coursefee" class="form-label">Course Fee</label>
+                                            <input type="text" class="form-control" name="college[courses][0][fee]">
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <label for="duration" class="form-label">Course Duration</label>
+                                            <input type="text" class="form-control" name="college[courses][0][duration]">
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <label for="seats" class="form-label">Available Seats</label>
+                                            <input type="number" class="form-control" name="college[courses][0][seats]">
+                                        </div>
+                                    </div>
+                                </div>
+                                <button type="button" class="btn btn-success btn-sm add-course">Add Course</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-end mt-3">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!--COURSE ADDER-->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const addCourseButton = document.querySelector('.add-course');
+            const coursesContainer = document.getElementById('courses');
+            let courseCount = 1;
+
+            addCourseButton.addEventListener('click', () => {
+                const newCourseDiv = document.createElement('div');
+                newCourseDiv.classList.add('course', 'border', 'p-3', 'mb-3');
+                newCourseDiv.innerHTML = `
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="coursename" class="form-label">Course Name</label>
+                            <input type="text" class="form-control" name="college[courses][${courseCount}][coursename]" required>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="coursefee" class="form-label">Course Fee</label>
+                            <input type="text" class="form-control" name="college[courses][${courseCount}][fee]">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="duration" class="form-label">Course Duration</label>
+                            <input type="text" class="form-control" name="college[courses][${courseCount}][duration]">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="seats" class="form-label">Available Seats</label>
+                            <input type="number" class="form-control" name="college[courses][${courseCount}][seats]">
+                        </div>
+                        <button type="button" class="btn btn-danger btn-sm remove-course mt-2">Remove</button>
+                    </div>
+                `;
+
+                coursesContainer.appendChild(newCourseDiv);
+                courseCount++;
+
+                newCourseDiv.querySelector('.remove-course').addEventListener('click', () => {
+                    coursesContainer.removeChild(newCourseDiv);
+                });
+            });
+        });
+    </script>
+
+
+    <script>
+//handling three sections of dashboard
+
+        $(document).ready(function () {
+            function showSection(sectionId) {
+                $('.content-section').addClass('hidden');
+                $(sectionId).removeClass('hidden');
+            }
+
+            $('#dashboard-btn').click(function () {
+                showSection('#dashboard');
+            });
+
+            $('#all-colleges-btn').click(function () {
+                showSection('#all-colleges');
+            });
+
+            $('#add-college-btn').click(function () {
+                showSection('#add-new-college');
+            });
+
+
+//after stage-5
+$('#add-new-college form').submit(function (e) {
+        e.preventDefault(); // Prevent default form submission
+
+        let formData = new FormData(this);
+        let submitBtn = $(this).find('button[type="submit"]');
+
+        // Show loading spinner 
+        submitBtn.html(`<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Adding...`);
+        submitBtn.prop('disabled', true);
+        $.ajax({
+            url: $(this).attr('action'),
+            type: $(this).attr('method'),
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: function (response) {
+                alert('College added successfully!');
+                $('#add-new-college form')[0].reset();
+                showSection('#dashboard');
+            },
+            error: function (err) {
+                alert('Error adding college. Please try again.');
+            },
+            complete: function () {
+                submitBtn.html('Submit');
+                submitBtn.prop('disabled', false);
+            }
+        });
+    })
+    ////after stage 5
+
+            // Search functionality for All Colleges
+            $('#search-college').on('input', function () {
+                const searchTerm = $(this).val().toLowerCase();
+                $('#colleges-container .col').each(function () {
+                    const collegeName = $(this).find('.card-title').text().toLowerCase();
+                    if (collegeName.includes(searchTerm)) {
+                        $(this).show();
+                    } else {
+                        $(this).hide();
+                    }
+                });
+            });
+
+            // Fetch and display all colleges
+            $('#all-colleges-btn').click(async function () {
+                $('.content-section').addClass('hidden');
+                $('#all-colleges').removeClass('hidden');
+
+                try {
+                    let response = await fetch('/admin/college');
+                    let colleges = await response.json();
+                    let container = $('#colleges-container');
+                    container.empty();
+
+                    colleges.forEach(college => {
+                        container.append(`
+                            <div class="col-md-4">
+                                <div class="card mb-3">
+                                    <div class="card-body">
+                                        <h5 class="card-title">${college.name}</h5>
+                                        <p class="card-text"><strong>Location:</strong> ${college.location.city}, ${college.location.state}</p>
+                                        <p class="card-text"><strong>About:</strong> ${college.about}, ${college.about}</p>
+                                        <a href="/admin/college/${college._id}/update" class="btn btn-warning btn-sm">Edit</a>
+                                        <button class="btn btn-danger btn-sm delete-btn" data-college-id="${college._id}">Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                        `);
+                    });
+                } catch (error) {
+                    console.error('Error fetching colleges:', error);
+                }
+            });
+
+            // Delete college functionality
+            $(document).on('click', '.delete-btn', async function () {
+                const collegeId = $(this).data('college-id');
+
+                if (!confirm('Are you sure you want to delete this college?')) return;
+
+                try {
+                    const deleteResponse = await fetch(`/admin/college/${collegeId}`, {
+                        method: 'DELETE',
+                    });
+
+                    if (deleteResponse.ok) {
+                        alert('College deleted successfully');
+                        location.reload();
+                    } else {
+                        alert('Failed to delete the college');
+                    }
+                } catch (error) {
+                    console.error('Error deleting college:', error);
+                    alert('A network error occurred. Please try again.');
+                }
+            });
+        });
+
+    </script>
+</body>
+</html>

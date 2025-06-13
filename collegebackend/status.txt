@@ -1,0 +1,30 @@
+all working done only error is that updating image is not working .
+
+1. fix the update image in edit page as it is not updating the image.  
+fixedddd
+all working properly 
+
+
+
+
+2. alll things working only all image updating and adding feature is working properly but only error is coming that 
+it do not delte from cloudinary  it delte from db  but in cloudinary it remains stores 
+
+Error no 2 is now fixed.
+all working properly and smoothly deleting when updating new things. 
+
+Search feature implemented.
+
+infromation send searchquery at http://localhost:3030/college/s?searchedlocation=textjov
+
+
+loading effect added 
+
+
+added required inputs enabled now cannot submit without required data.
+
+
+
+
+
+notification: Added cors for specific port

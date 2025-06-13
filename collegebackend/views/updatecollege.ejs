@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update College</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <style>
+        .course-card {
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            padding: 1rem;
+        }
+        .form-section {
+            margin-bottom: 2rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container py-5">
+
+
+
+
+
+
+        <!-- Loader -->
+<div id="loader" class="loader-overlay d-none">
+    <div class="spinner-border text-primary" role="status">
+        <span class="visually-hidden">Loading...</span>
+    </div>
+</div>
+<style>
+    .loader-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1050;
+}
+</style>
+<!--loader-->
+
+
+
+
+
+        <h1 class="text-center mb-5">Update College</h1>
+        
+        <!--form -->
+        <div class="card shadow">
+            <div class="card-body p-4">
+                <form id="updateCollegeForm" action="/admin/college/<%=collegedatabyid._id%>/update" method="PUT" enctype="multipart/form-data" >
+                    <!-- College Basic Info -->
+                    <div class="form-section">
+                        <h4 class="mb-4">Basic Information</h4>
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label for="name" class="form-label">College Name</label>
+                                <input type="text" class="form-control" id="name" name="college[name]" 
+                                    value="<%= collegedatabyid.name %>" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="type" class="form-label">Type</label>
+                                <input type="text" class="form-control" id="type" name="college[type]" 
+                                    value="<%= collegedatabyid.type %>" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="category" class="form-label">Category</label>
+                                <input type="text" class="form-control" id="category" name="college[category]" 
+                                    value="<%= collegedatabyid.category %>">
+                            </div>
+
+                            <!--image-->
+                            <div class="mb-2"> 
+                                Last image
+                                <% if (collegedatabyid.image && collegedatabyid.image.url) { %>
+                                    <img src="<%= collegedatabyid.image.url %>" alt="College Image" style="max-width: 200px; margin-top: 10px;">
+                                <% } %>
+                              </div>    
+                            <div class="col-md-6 mb-3">
+                                <label for="image" class="form-label">Upload New Image</label>
+                                <input type="file" class="form-control" id="image" name="college[image]" accept="image/*">
+                            </div>
+
+
+
+                             <!--add brochure-->
+
+                         <!-- Button to download the brochure -->
+<button type="button" onclick="downloadPDF()">Download Brochure</button>
+
+<script>
+    function downloadPDF() {
+        const pdfUrl = "<%= collegedatabyid.brochure ? collegedatabyid.brochure.url : '' %>";
+        
+        if (!pdfUrl) {
+            alert("No brochure available for download.");
+            return;
+        }
+
+        fetch(pdfUrl)
+        .then(response => response.blob())
+        .then(blob => {
+            const blobUrl = window.URL.createObjectURL(blob);
+            const a = document.createElement("a");
+            a.href = blobUrl;
+            a.download = "college_brochure.pdf"; // Ensuring it's downloaded as a .pdf
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            window.URL.revokeObjectURL(blobUrl);
+        })
+        .catch(error => {
+            console.error("Error downloading PDF:", error);
+            alert("Failed to download the PDF. Please try again.");
+        });
+    }
+</script>
+
+                        
+                        <div class="col-md-6 mb-3">
+                            <label for="brochure" class="form-label">College brochure</label>
+                            <input type="file" class="form-control" id="brochure" name="college[brochure]" accept="application/pdf">
+                        </div>
+                        <!--brochure end-->
+
+                            <div class="col-md-6">
+                                <label for="estyear" class="form-label">Established Year</label>
+                                <input type="number" class="form-control" id="estyear" name="college[estyear]" 
+                                    value="<%= collegedatabyid.estyear %>">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Location Information -->
+                    <div class="form-section">
+                        <h4 class="mb-4">Location Details</h4>
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label for="country" class="form-label">Country</label>
+                                <input type="text" class="form-control" id="country" name="college[country]" 
+                                    value="<%= collegedatabyid.country %>" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="state" class="form-label">State</label>
+                                <input type="text" class="form-control" id="state" name="college[location][state]" 
+                                    value="<%= collegedatabyid.location.state %>" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="city" class="form-label">City</label>
+                                <input type="text" class="form-control" id="city" name="college[location][city]" 
+                                    value="<%= collegedatabyid.location.city %>" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="address" class="form-label">Address</label>
+                                <input type="text" class="form-control" id="address" name="college[location][address]" 
+                                    value="<%= collegedatabyid.location.address %>">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="code" class="form-label">Postal Code</label>
+                                <input type="number" class="form-control" id="code" name="college[location][code]" 
+                                    value="<%= collegedatabyid.location.code %>">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="latitude" class="form-label">Latitude</label>
+                                <input type="number" step="any" class="form-control" id="latitude" 
+                                    name="college[coordinates][latitude]" value="<%= collegedatabyid.coordinates.latitude %>">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="longitude" class="form-label">Longitude</label>
+                                <input type="number" step="any" class="form-control" id="longitude" 
+                                    name="college[coordinates][longitude]" value="<%= collegedatabyid.coordinates.longitude %>">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Contact Information -->
+                    <div class="form-section">
+                        <h4 class="mb-4">Contact Details</h4>
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label for="collegewebsite" class="form-label">Website</label>
+                                <input type="text" class="form-control" id="collegewebsite" name="college[collegewebsite]" 
+                                    value="<%= collegedatabyid.collegewebsite %>">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="email" class="form-label">Email</label>
+                                <input type="email" class="form-control" id="email" name="college[contact][email]" 
+                                    value="<%= collegedatabyid.contact.email %>">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="phone" class="form-label">Phone</label>
+                                <input type="tel" class="form-control" id="phone" name="college[contact][phone]" 
+                                    value="<%= collegedatabyid.contact.phone %>">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Additional Information -->
+                    <div class="form-section">
+                        <h4 class="mb-4">Additional Details</h4>
+                        <div class="row g-3">
+                            <div class="col-12">
+                                <label for="about" class="form-label">About</label>
+                                <textarea class="form-control" id="about" name="college[about]" rows="4"><%= collegedatabyid.about %></textarea>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="fee" class="form-label">Annual Fee</label>
+                                <input type="number" class="form-control" id="fee" name="college[fee]" 
+                                    value="<%= collegedatabyid.fee %>">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Courses Section -->
+                    <div class="form-section">
+                        <div class="d-flex justify-content-between align-items-center mb-4">
+                            <h4 class="mb-0">Courses Offered</h4>
+                            <button type="button" class="btn btn-sm btn-success add-course">
+                                <i class="bi bi-plus-lg"></i> Add Course
+                            </button>
+                        </div>
+                        
+                        <div id="courses">
+                            <% collegedatabyid.courses.forEach((course, index) => { %>
+                                <div class="course-card">
+                                    <div class="row g-3">
+                                        <div class="col-md-6">
+                                            <label for="coursename" class="form-label">Course Name</label>
+                                            <input type="text" class="form-control" 
+                                                name="college[courses][<%= index %>][coursename]" 
+                                                value="<%= course.coursename %>" required>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="coursefee" class="form-label">Course Fee</label>
+                                            <input type="text" class="form-control" 
+                                                name="college[courses][<%= index %>][fee]" 
+                                                value="<%= course.fee %>">
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="duration" class="form-label">Duration</label>
+                                            <input type="text" class="form-control" 
+                                                name="college[courses][<%= index %>][duration]" 
+                                                value="<%= course.duration %>">
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="seats" class="form-label">Available Seats</label>
+                                            <input type="number" class="form-control" 
+                                                name="college[courses][<%= index %>][seats]" 
+                                                value="<%= course.seats %>">
+                                        </div>
+                                    </div>
+                                    <button type="button" class="btn btn-danger btn-sm mt-3 remove-course">
+                                        <i class="bi bi-trash"></i> Remove Course
+                                    </button>
+                                </div>
+                            <% }) %>
+                        </div>
+                    </div>
+
+                    <div class="text-end mt-5">
+                        <button type="submit" class="btn btn-primary btn-lg px-5">Update College</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Course Management Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const coursesContainer = document.getElementById('courses');
+            const addCourseBtn = document.querySelector('.add-course');
+            let courseCount = <%= collegedatabyid.courses.length %>;
+
+            // Add new course
+            addCourseBtn.addEventListener('click', () => {
+                const newCourse = createCourseElement(courseCount);
+                coursesContainer.appendChild(newCourse);
+                courseCount++;
+                reindexCourses();
+            });
+
+            // Remove course handler
+            coursesContainer.addEventListener('click', (e) => {
+                if (e.target.classList.contains('remove-course')) {
+                    e.target.closest('.course-card').remove();
+                    reindexCourses();
+                }
+            });
+
+            // Course element template
+            function createCourseElement(index) {
+                const div = document.createElement('div');
+                div.className = 'course-card';
+                div.innerHTML = `
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label class="form-label">Course Name</label>
+                            <input type="text" class="form-control" 
+                                name="college[courses][${index}][coursename]" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Course Fee</label>
+                            <input type="text" class="form-control" 
+                                name="college[courses][${index}][fee]">
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Duration</label>
+                            <input type="text" class="form-control" 
+                                name="college[courses][${index}][duration]">
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Available Seats</label>
+                            <input type="number" class="form-control" 
+                                name="college[courses][${index}][seats]">
+                        </div>
+                    </div>
+                    <button type="button" class="btn btn-danger btn-sm mt-3 remove-course">
+                        <i class="bi bi-trash"></i> Remove Course
+                    </button>
+                `;
+                return div;
+            }
+
+            // Reindex all courses
+            function reindexCourses() {
+                const courses = coursesContainer.querySelectorAll('.course-card');
+                courses.forEach((course, index) => {
+                    course.querySelectorAll('input').forEach(input => {
+                        input.name = input.name.replace(/courses\[\d+\]/g, `courses[${index}]`);
+                    });
+                });
+                courseCount = courses.length;
+            }
+        });
+    </script>
+
+    <!-- Form Submission Handler -->
+    <script>
+        document.getElementById('updateCollegeForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const form = e.target;
+            const formData = new FormData(form);
+            const data = {};
+
+
+            //show loader stage after 5
+            const loader = document.getElementById('loader'); // Get the loader element
+             // Show loader
+    loader.classList.remove('d-none');
+
+           ///
+
+
+
+            // Process form data into nested structure
+            formData.forEach((value, key) => {
+                const keys = key.split(/[\[\]]/g).filter(k => k);
+                let current = data;
+                
+                keys.forEach((k, i) => {
+                    if (i === keys.length - 1) {
+                        current[k] = value;
+                    } else {
+                        current[k] = current[k] || (isNaN(keys[i + 1]) ? {} : []);
+                        current = current[k];
+                    }
+                });
+            });
+
+            //Form sending logic
+            try {
+                const response = await fetch(form.action, {
+                    method: 'PUT',
+                    body: formData, // Use formData instead of JSON
+                    
+                });
+
+                if (response.ok) {
+                    alert('College updated successfully!');
+                    window.location.href = '/admin';
+                } else {
+                    throw new Error('Failed to update college');
+                }
+            } catch (error) {
+                console.error("Error:", error);
+                alert('Error updating college. Please try again.');
+            }  finally {
+        // Hide loader after request completes
+        loader.classList.add('d-none');
+    }
+        });
+    </script>
+    
+</body>
+</html>
